@@ -1,0 +1,40 @@
+#tabs {
+    display: flex;
+    flex-direction: column;
+}
+
+#tabContainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+button {
+    margin: 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background: white;
+    cursor: pointer;
+}
+
+button.active {
+    background: #0078D4;
+    color: white;
+}
+/* .action-buttons {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.action-buttons button {
+    margin-right: 8px;
+}
+
+#exportDocBtn {
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+}
+
+#exportDocBtn:hover {
+    background-color: #e0e0e0;
+} */

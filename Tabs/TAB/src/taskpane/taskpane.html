@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Word 多标签编辑器</title>
+
+    <!-- Office JavaScript API -->
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+
+    <!-- Fluent UI 样式 -->
+    <link rel="stylesheet" href="https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-core/11.1.0/css/fabric.min.css"/>
+
+    <!-- 导入Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+
+    <!-- 自定义样式 -->
+    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+    <script src="taskpane.js" defer></script>
+    
+    <!-- 内联样式优化 -->
+    <style>
+        body {
+            font-family: 'Source Serif 4', 'Noto Serif SC', serif;
+            background-color: #fcfcfc;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.5;
+        }
+        
+        .app-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        header {
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
+            border-bottom: 1px solid #e1e1e1;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            font-weight: 500;
+            font-size: 24px;
+            margin: 0;
+            color: #2b579a;
+            letter-spacing: -0.3px;
+        }
+        
+        .subtitle {
+            font-size: 14px;
+            color: #666;
+            margin-top: 4px;
+            font-weight: normal;
+            font-style: italic;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 16px;
+            padding: 0 5px;
+        }
+        
+        #newDocBtn {
+            background-color: #2b579a;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            font-family: inherit;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        #newDocBtn:hover {
+            background-color: #1e3f75;
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+        }
+        
+        #newDocBtn:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        
+        #tabContainer {
+            background-color: white;
+            border-radius: 6px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            overflow: hidden;
+            border: 1px solid #e8e8e8;
+        }
+        
+        /* 标签样式优化 */
+        .tab {
+            padding: 10px 14px;
+            background-color: #f5f7fa;
+            border-bottom: 1px solid #eaeaea;
+            margin-bottom: 0;
+            transition: background-color 0.2s;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+        
+        .tab.active {
+            background-color: white;
+            border-left: 3px solid #2b579a;
+        }
+        
+        .tab:hover:not(.active) {
+            background-color: #e9edf5;
+        }
+        
+        .tab-name {
+            flex-grow: 1;
+            font-size: 15px;
+            font-weight: 500;
+            color: #444;
+        }
+        
+        .tab.active .tab-name {
+            color: #2b579a;
+        }
+        
+        .editor-area {
+            padding: 15px 20px;
+            min-height: 200px;
+            border-top: 1px solid #f0f0f0;
+        }
+        
+        .tab-controls {
+            display: flex;
+            gap: 8px;
+        }
+        
+        .tab-control-btn {
+            background: transparent;
+            border: none;
+            color: #777;
+            cursor: pointer;
+            font-size: 14px;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+        
+        .tab-control-btn:hover {
+            opacity: 1;
+            color: #333;
+        }
+        
+        /* 增加响应式设计 */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .tab {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>文档编辑器</h1>
+            <div class="subtitle">优雅地管理多个Word文档</div>
+        </header>
+
+        <!-- 标签页 UI -->
+        <main id="tabs">
+            <div class="action-buttons">
+                <button id="newDocBtn">
+                    <span style="margin-right:4px;">+</span> 新建文档
+                </button>
+                <div style="flex-grow:1;"></div>
+            </div>
+            <div id="tabContainer"></div>
+        </main>
+    </div>
+</body>
+</html>
