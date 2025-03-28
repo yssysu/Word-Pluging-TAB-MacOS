@@ -11,6 +11,31 @@ Office.onReady(errorHandler(async (info) => {
   if (info.host === Office.HostType.Word) {
     console.log("Office Word 加载完成，初始化文档管理系统...");
     
+    // 添加logo到header
+    const header = document.querySelector('header');
+    if (header) {
+      const logoDiv = document.createElement('div');
+      logoDiv.style.display = 'flex';
+      logoDiv.style.alignItems = 'center';
+      logoDiv.style.marginBottom = '10px';
+      
+      const logoImg = document.createElement('img');
+      logoImg.src = '../../../assets/logo.png';
+      logoImg.alt = '插件图标';
+      logoImg.style.height = '32px';
+      logoImg.style.marginRight = '10px';
+      
+      const titleDiv = document.createElement('div');
+      titleDiv.innerHTML = '<h1>单窗口多标签编辑器</h1><p class="subtitle">高效管理多文档</p>';
+      
+      logoDiv.appendChild(logoImg);
+      logoDiv.appendChild(titleDiv);
+      
+      // 清空并添加新元素
+      header.innerHTML = '';
+      header.appendChild(logoDiv);
+    }
+    
     // 初始化文档管理器
     docManager = new DocumentManager().initialize();
     

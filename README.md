@@ -9,10 +9,10 @@
 ### 项目展示图
 
 #### 1. 总体预览
-![alt text](/Tabs/TAB/images/image-1.png)
+![alt text](/Tabs/TAB/images/总览.png)
 
 #### 2. 重命名
-![alt text](/Tabs/TAB/images/image.png)
+![alt text](/Tabs/TAB/images/重命名.png)
 
 ## 核心功能
 
@@ -58,21 +58,22 @@
 
 
 ## 项目结构
-TAB/
-├── src/
-│   ├── taskpane/
-│   │   ├── taskpane.html     # 主界面HTML
-│   │   ├── taskpane.js       # 主入口文件
-│   │   ├── utils.js          # 工具函数库
-│   │   ├── documentManager.js # 文档管理模块
-│   │   ├── tabsUI.js         # 标签UI管理模块
-│   ├── manifest.xml          # Office加载项清单
-│   └── ...
-├── assets/ # 图片和图标
-├── config/ # 项目配置文件
-├── .eslintrc.json # ESLint配置
-├── package.json # 项目依赖
-└── README.md # 项目说明文档
+- Tabs/   
+    - TAB/
+    - src/
+        - taskpane/
+        - taskpane.html # 主界面HTML
+        - taskpane.js # 主入口文件
+        - utils.js # 工具函数库
+        - documentManager.js # 文档管理模块
+        - tabsUI.js # 标签UI管理模块
+        - manifest.xml # Office加载项清单
+    - assets/ # 图片和图标
+    - config/ # 项目配置文件
+    - eslintrc.json # ESLint配置
+    - package.json # 项目依赖
+
+- README.md # 项目说明文档
 
 
 ## 技术栈
@@ -81,3 +82,11 @@ TAB/
 - **UI组件**：Microsoft Fluent UI
 - **开发工具**：Office.js API, Webpack, Babel
 - **字体**：Source Serif 4, Noto Serif SC
+
+## 开发特性
+
+- **模块化架构**：将功能拆分为独立模块，提高代码可维护性
+- **统一错误处理**：采用包装器模式统一处理异常
+- **响应式UI**：适应不同屏幕尺寸的标签栏设计
+- **持久化存储**：利用localStorage保存用户文档状态
+- **事件委托**：优化DOM事件处理，提高性能
