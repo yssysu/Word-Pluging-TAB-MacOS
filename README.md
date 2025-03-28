@@ -9,10 +9,10 @@
 ### 项目展示图
 
 #### 1. 总体预览
-![alt text](images/image-1.png)
+![alt text](/Tabs/TAB/images/image-1.png)
 
 #### 2. 重命名
-![alt text](images/image.png)
+![alt text](/Tabs/TAB/images/image.png)
 
 ## 核心功能
 
